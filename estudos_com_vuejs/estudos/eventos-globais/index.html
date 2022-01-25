@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./vue.js"></script>
+    <title>vue.js</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <h2>@keyup</h2>
+            <p>keyup</p>
+            <input @keyup="ativar" type="text" name="" id="">
+            <br>
+            <p>keydown</p>
+            <input @keydown="ativarDown" type="text" name="" id="">
+            <br>
+            <p>keyup.enter</p>
+            <input @keyup.enter="ativarEnter" type="text" name="" id="">
+            <br>
+            <p>keyup.esc</p>
+            <input @keyup.esc="ativarEsc" type="text" name="" id="">
+            <br>
+            <p>keyup.up</p>
+            <input @keyup.up="ativarUp" type="text" name="" id="">
+        </div>
+
+        <h2>@Click</h2>
+        <div>
+            <p>click</p>
+            <input @click="ativarClick" type="text" name="" id="">
+            <br>
+            <p>click.alt</p>
+            <input @click.alt="ativarAlt" type="text" name="" id="">
+            <br>
+            <p>click.right</p>
+            <input @click.right="ativarRight" type="text" name="" id="">
+            <br>
+            <p>click.left</p>
+            <input @click.left="ativarLeft" type="text" name="" id="">
+            <br>
+            <p>click.middle</p>
+            <input @click.middle="ativarMiddle" type="text" name="" id="">
+        </div>
+
+        <div>
+            <p style="position: fixed;">{{totalScroll}}</p>
+            <br>
+            <p style="position: fixed;">{{totalScroll * 25}}</p>
+        </div>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                totalScroll: 0
+            },
+            methods: {
+                ativar() {
+                    event.currentTarget.style.border = "4px solid blue"
+                    console.log("ATIVOU")
+                },
+                ativarDown() {
+                    event.currentTarget.style.border = "4px solid red"
+                    console.log("ATIVOU DOWN")
+                },
+                ativarEnter() {
+                    event.currentTarget.style.border = "4px solid green"
+                    console.log("ATIVOU ENTER")
+                },
+                ativarEsc() {
+                    event.currentTarget.style.border = "4px solid yellow"
+                    console.log("ATIVOU ESC")
+                },
+                ativarUp() {
+                    event.currentTarget.style.border = "4px solid pink"
+                    console.log("ATIVOU UP")
+                },
+                ativarClick() {
+                    event.currentTarget.style.color = "blue"
+                    console.log("ATIVOU CLICK")
+                },
+                ativarAlt() {
+                    event.currentTarget.style.color = "red"
+                    console.log("ATIVOU ALT")
+                },
+                ativarRight() {
+                    event.currentTarget.style.color = "green"
+                    console.log("ATIVOU RIGHT")
+                },
+                ativarLeft() {
+                    event.currentTarget.style.color = "yellow"
+                    console.log("ATIVOU LEFT")
+                },
+                ativarMiddle() {
+                    event.currentTarget.style.color = "pink"
+                    console.log("ATIVOU MIDDLE")
+                },
+                handleScroll() {
+                    console.log("event")
+                    if(event.key === "Enter") {
+                        this.totalScroll = window.scrollY
+                    }
+                }
+            },
+            created() {
+                // window.addEventListener("scroll", this.handleScroll);
+                window.addEventListener("keyup", this.handleScroll);
+                console.log("Criou Componente")
+            }
+        });
+    </script>
+
+    <style>
+        body {
+            height: 2000px;
+        }
+    </style>
+</body>
+
+</html>
